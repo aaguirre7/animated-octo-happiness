@@ -1,5 +1,5 @@
 // Import Thoughts and Users Models
-const {Thoughts, Users} = require('../models');
+const {Thoughts, Users} = require('../models/index');
 
 // Set up Thoughts Controller
 const thoughtsController = {

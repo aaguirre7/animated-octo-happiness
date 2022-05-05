@@ -19,10 +19,12 @@ const UsersSchema = new Schema(
         type: Schema.Types.ObjectId,
         ref: 'Thoughts'
     }],
-    friends: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Users'
-    }]
+    friends: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Users'
+        }
+    ]
     },
     {
     toJSON: {

@@ -59,7 +59,7 @@ const usersController = {
         })
         .catch(err => res.json(err))
     },
-
+ // Delete a current user by ID
     deleteUsers({params}, res) {
         Users.findOneAndDelete({_id: params.id})
         .then(dbUsersData => {
@@ -72,9 +72,12 @@ const usersController = {
         .catch(err => res.status(400).json(err));
     },
 
-    // Delete a current user by ID
+// Add a Friend   
     addFriend({params}, res) {
-        Users.findOneAndUpdate({_id: params.id}, {$push: { friends: params.friendId}}, {new: true})
+        Users.findOneAndUpdate(
+            {_id: params.userId}, 
+            {$push: { friends: params.friendId}}, 
+            {new: true})
         .populate({path: 'friends', select: ('-__v')})
         .select('-__v')
         .then(dbUsersData => {
@@ -89,7 +92,7 @@ const usersController = {
 
     // Delete a current Friend
     deleteFriend({ params }, res) {
-        Users.findOneAndUpdate({_id: params.id}, {$pull: { friends: params.friendId}}, {new: true})
+        Users.findOneAndUpdate({_id: params.userId}, {$pull: { friends: params.friendId}}, {new: true})
         .populate({path: 'friends', select: '-__v'})
         .select('-__v')
         .then(dbUsersData => {
